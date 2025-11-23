@@ -1,0 +1,16 @@
+dfx_runtime.txt
+*/export_sim/*
+
+.Xil
+*.lpr
+*.wpc
+*.str
+*.log
+*.jou
+*.cache
+*.runs
+*.ip_user_files
+*.sim
+*.dcp
+*.debug
+*.xml
