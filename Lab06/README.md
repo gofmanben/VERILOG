@@ -2,6 +2,8 @@
 
 This project implements the **Subway Slugging VGA game** from Lab 6 using a **synchronous, structural Verilog** design on the **BASYS3** board, plus a matching **Python/pygame simulator** that mirrors the Verilog geometry and behavior.
 
+For a deeper dive into the implementation, including module descriptions and code-referenced links, see [Overview.md](Overview.md)
+
 The design drives a 640×480 VGA display with:
 
 - **slug** that can switch between three tracks or hover above the middle track  
