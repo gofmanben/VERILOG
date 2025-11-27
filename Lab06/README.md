@@ -4,6 +4,19 @@ This project implements the **Subway Slugging VGA game** from Lab 6 using a **sy
 
 For a deeper dive into the implementation, including module descriptions and code-referenced links, see [Overview.md](Overview.md)
 
+## 🎬 Python simulator animation
+![Demo Animation](Recording.gif)
+
+#### Controls (keyboard):
+- LEFT / RIGHT arrow keys – Move slug between tracks.
+- UP arrow – Hover (when in middle track and energy > 0).
+- SPACE – Start / pause / resume the game.
+- ALT – Toggle cheat (slug becomes immortal; can pass through trains).
+- R – Reset by restarting the Python script.
+- ESC – Quit.
+
+---
+
 The design drives a 640×480 VGA display with:
 
 - **slug** that can switch between three tracks or hover above the middle track  
@@ -87,14 +100,3 @@ Typical modules in the Verilog design (exact names may vary with your code):
 
 For Vivado documentation and tutorials, visit the official Xilinx support site:  
 🔗 [https://www.xilinx.com/support.html](https://www.xilinx.com/support.html)
-
-## 🎬 Python simulator animation
-Controls (keyboard):
-- LEFT / RIGHT arrow keys – Move slug between tracks.
-- UP arrow – Hover (when in middle track and energy > 0).
-- SPACE – Start / pause / resume the game.
-- ALT – Toggle cheat (slug becomes immortal; can pass through trains).
-- R – Reset by restarting the Python script.
-- ESC – Quit.
-
-![Demo Animation](Recording.gif)
