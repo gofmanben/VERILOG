@@ -108,7 +108,7 @@ and only btnD can have an effect](cse100_lab6_bgofman.srcs/sources_1/new/lab6_to
 
 ## Module Overview
 
-- [A new module generates the V/H coordinates (i.e. pixel address) of the current pixel](cse100_lab6_bgofman.srcs/sources_1/new/lab6_top.v#L93) | (but likely<br>
+- [A new module generates the V/H coordinates (i.e. pixel address) of the current pixel](cse100_lab6_bgofman.srcs/sources_1/new/lab6_top.v#L93) (but likely<br>
 will be composed of pre-existing modules)
 - [A new module is needed to generate the V/Hsync signals](cse100_lab6_bgofman.srcs/sources_1/new/vga_controller.v#L40).
 - [A new module is needed to produce the 16-bit RGB pixel data from the user input, the pushbuttons/switches,<br>
