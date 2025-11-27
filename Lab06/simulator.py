@@ -33,7 +33,7 @@ V_RES = 480     # visible vertical lines - shown on screen
                           # Page 3: There is also some time between rows and between frames (after all 480 rows) 
                           # which allows the cathode ray to be re-positioned for the next row or frame.
 
-FREQ_HZ        = 144        # Page 4: the monitor is being refreshed roughly 60 times per second: at 60Hz.
+FREQ_HZ        = 60        # Page 4: the monitor is being refreshed roughly 60 times per second: at 60Hz.
 SLUG_SIZE      = 16        # Page 4: 6. The slug is a 16 by 16 pixel yellow square (or a shape that fits in this square and touches all 4 sides of the square).
 SLUG_TOP_ROW   = 360       # Page 4: The top edge of the slug is in row 360 and the slug is initially in the middle of the middle track.
 
