@@ -6,7 +6,7 @@
 and the VGA monitor connected to it](cse100_lab6_bgofman.srcs/sources_1/new/lab6_top.v#L12) |. [In this game, a slug must avoid trains traveling down tracks<br>
 by jumping between the three tracks or hovering above the middle track](cse100_lab6_bgofman.srcs/sources_1/new/slug.v#L41) |. [A collision with a train ends<br>
 the game and the number of trains the slug has avoided is the score](cse100_lab6_bgofman.srcs/sources_1/new/lab6_top.v#L233) |. [The slug can only hover for a<br>
-limited time](cse100_lab6_bgofman.srcs/sources_1/new/energy.v#L51) |. [Once the slug’s energy level, displayed on the left, reaches 0 the slug will drop](cse100_lab6_bgofman.srcs/sources_1/new/energy.v#L42) |.<br>
+limited time](cse100_lab6_bgofman.srcs/sources_1/new/energy.v#L51) |. [Once the slug’s energy level, displayed on the left, reaches 0 the slug will drop](cse100_lab6_bgofman.srcs/sources_1/new/energy.v#L42).<br>
 
 [Initially, the slug and the energy level bar are displayed, but no trains are present](cse100_lab6_bgofman.srcs/sources_1/new/lab6_top.v#L151) |. [The score, initially 0](cse100_lab6_bgofman.srcs/sources_1/new/lab6_top.v#L254) |,<br> [is displayed on AN1 and AN0](cse100_lab6_bgofman.srcs/sources_1/new/lab6_top.v#L338) |. [Pressing btnC starts the game](cse100_lab6_bgofman.srcs/sources_1/new/lab6_top.v#L85) |. [No other pushbutton has an effect<br>
 before the game starts (except the global reset, btnD, of course)](cse100_lab6_bgofman.srcs/sources_1/new/lab6_top.v#L52) |. [When the game starts the trains will<br>
@@ -18,7 +18,7 @@ the energy level increases](cse100_lab6_bgofman.srcs/sources_1/new/energy.v#L46)
 slug is not hovering and overlaps a train](cse100_lab6_bgofman.srcs/sources_1/new/lab6_top.v#L234) |. [A crash ends the game, and when the game is over, the<br>
 slug and all trains stop moving, and the slug flashes](cse100_lab6_bgofman.srcs/sources_1/new/lab6_top.v#L285) |. [Only the global reset, btnD, will have an effect<br>
 when the game is over](cse100_lab6_bgofman.srcs/sources_1/new/lab6_top.v#L77) |. [Switch sw[3] will be a cheat switch that makes the slug immortal: it can go<br>
-through trains without crashing](cse100_lab6_bgofman.srcs/sources_1/new/lab6_top.v#L235) |.
+through trains without crashing](cse100_lab6_bgofman.srcs/sources_1/new/lab6_top.v#L235).
 
 ## VGA controller
 
@@ -28,19 +28,19 @@ circuit design shown there: it is asynchronous.<br>
 [To control the monitor you must generate two control signals, Hsync and Vsync, as well as the 12](cse100_lab6_bgofman.srcs/sources_1/new/lab6_top.v#L304) |<br>
 [RGB data signals (vgaRed[3:0], vgaBlue[3:0], and vgaGreen[3:0]) for each of the screen’s 640 x<br>
 480 pixels](cse100_lab6_bgofman.srcs/sources_1/new/lab6_top.v#L305) |. [The value of these 12 signals are sent one at a time for each pixel](cse100_lab6_bgofman.srcs/sources_1/new/vga_controller.v#L31) |, [row by row from left to<br>
-right and top to bottom using one cycle of the 25MHz clock (provided to you) for each pixel](cse100_lab6_bgofman.srcs/sources_1/new/vga_controller.v#L32) |.<br>
+right and top to bottom using one cycle of the 25MHz clock (provided to you) for each pixel](cse100_lab6_bgofman.srcs/sources_1/new/vga_controller.v#L32).<br>
 
 [There is also some time between rows and between frames](cse100_lab6_bgofman.srcs/sources_1/new/track.v#L84) | [(after all 480 rows)](cse100_lab6_bgofman.srcs/sources_1/new/constants.vh#L15) | [which allows the cathode<br>
 ray to be re-positioned for the next row or frame](cse100_lab6_bgofman.srcs/sources_1/new/constants.vh#L16) |. [The Hsync and Vsync signals are used by the<br>
 monitor to ”synchronize” the start of each row and frame; they are low at fixed times between rows<br>
-and frames](cse100_lab6_bgofman.srcs/sources_1/new/vga_controller.v#L39) |. (Yes the monitors we will use are lcd displays, not cathode ray tubes. But the protocol<br>
-used to communicate with these monitors is a standard that lives on.) |<br>
+and frames](cse100_lab6_bgofman.srcs/sources_1/new/vga_controller.v#L39). (Yes the monitors we will use are lcd displays, not cathode ray tubes. But the protocol<br>
+used to communicate with these monitors is a standard that lives on.)<br>
 
 [One way to think of this is to imagine that you have an 800 x 525 grid of pixels as shown below](cse100_lab6_bgofman.srcs/sources_1/new/vga_controller.v#L61) |<br>
 [(instead of the 640 x 480 pixels which correspond to the area you see on the monitor)](cse100_lab6_bgofman.srcs/sources_1/new/vga_controller.v#L62) |. [This grid is<br>
 traversed starting at the top left, location row 0, column 0](cse100_lab6_bgofman.srcs/sources_1/new/vga_controller.v#L36) |. [Each row is traversed from left to right<br>
 followed by the row immediately below it and so on](cse100_lab6_bgofman.srcs/sources_1/new/vga_controller.v#L89) |. [The region of dimension 640 x 480 at the top<br>
-left is the *Active Region*: the pixels in this region corresponds to pixels on the screen](cse100_lab6_bgofman.srcs/sources_1/new/vga_controller.v#L43) |. The pixels<br>
+left is the *Active Region*: the pixels in this region corresponds to pixels on the screen](cse100_lab6_bgofman.srcs/sources_1/new/vga_controller.v#L43). The pixels<br>
 outside this region correspond to time where the cathode ray would be off the screen. So the L-shaped<br>
 region outside the active region is not part of the screen but represents the time needed between rows<br>
 and frames in terms of pixels.<br>
