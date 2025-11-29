@@ -102,7 +102,7 @@ descend at one pixel per frame until it is completely off the screen](cse100_lab
 [29. The random amount of wait time before descending is T frames where T is a randomly selected<br>
 number between 0 and 127](cse100_lab6_bgofman.srcs/sources_1/new/train.v#L55).<br>
 [30. A crash occurs whenever the slug is not hovering and it overlaps any train by at least 1 pixel](cse100_lab6_bgofman.srcs/sources_1/new/lab6_top.v#L139).<br>
-[31. If a crash occurs, the game is over: the trains stop moving](cse100_lab6_bgofman.srcs/sources_1/new/lab6_top.v#L198) |, [the slug stops moving and flashes,<br>
+[31. If a crash occurs, the game is over: the trains stop moving](cse100_lab6_bgofman.srcs/sources_1/new/lab6_top.v#L199) |, [the slug stops moving and flashes,<br>
 and only btnD can have an effect](cse100_lab6_bgofman.srcs/sources_1/new/lab6_top.v#L286).<br>
 [32. When the game is over, pressing btnD will start a new game](cse100_lab6_bgofman.srcs/sources_1/new/lab6_top.v#L90).<br>
 

@@ -98,7 +98,7 @@ module lab6Top (
   // Page 6: (a) Implement a VGA controller that outputs the Hsync and Vsync signals, and provides the
   // pixel address and indicator for the active region while displaying a single color.
   vga_controller _vga (
-    .greset(btnD),
+    .greset(`ifdef SYNTHESIS btnD `else btnR_edge `endif),  // testbench reset
      //  40 ns → 25 MHz   (VGA pixel clock)
     .clk        (clk),        // Page 4: The value of the RGB data signals determine the color displayed for pixels in the Active Region, 
                               // with one cycle of the 25MHz clock corresponding to a pixel.
@@ -190,14 +190,14 @@ module lab6Top (
     .energy_o   (energy_o)     // High when (x,y) lies inside the green bar region
   );
 
+  wire next_live = pause_game & btnC_edge & ~game_over; // Page 9: You may decide if the game coninues when a life is lost or if the game pauses when a life is lost
   // Page 7: (g) Next you should work on one track. Please make a separate module for a track.
   wire trains_o, end_train_o;
   track _track (
     .clk         (clk),           // Page 3: using one cycle of the 25MHz clock (provided to you) for each pixel
     .frame_tick  (frame_tick),    // Frame clock: 1 pulse per frame (from frame_tick)
     .freeze      (freeze),        // Page 5: 31. If a crash occurs, the game is over: the trains stop moving
-    .next_live   (~game_over &    // Page 9: You may decide if the game coninues when a life is lost or if the game pauses when a life is lost
-                  btnC_edge),     // You may decide if the game coninues when a life is lost or if the game pauses when a life is lost, then pressing btnC resumes game.
+    .next_live   (next_live),     // You may decide if the game coninues when a life is lost or if the game pauses when a life is lost, then pressing btnC resumes game.
     .x           (x),             // current pixel x from VGA pipeline
     .y           (y),             // current pixel y from VGA pipeline
     .trains_o    (trains_o),      // 1 => current pixel is on any active train,
@@ -239,7 +239,7 @@ module lab6Top (
   // You can reuse code from prior labs, but it must be your code. (countUD4L/countUD16L/edge_detector/lfsr/ring_counter/selector/hex7seg)
   // ============================================================
   wire pause_game_next = pause_game | crash_now;          // Page 5: unless the game ends (a crash occurs).
-  FDRE #(.INIT(1'b0)) _pause_game(.C(clk), .CE(1'b1), .R(btnC), .D(pause_game_next), .Q(pause_game));
+  FDRE #(.INIT(1'b0)) _pause_game(.C(clk), .CE(1'b1), .R(btnC_edge), .D(pause_game_next), .Q(pause_game));
 
   wire pause_game_prev;
   FDRE #(.INIT(1'b0)) _pause_prev (.C (clk), .CE(1'b1), .R (1'b0), .D (pause_game), .Q (pause_game_prev));
@@ -274,12 +274,12 @@ module lab6Top (
   wire [4:0] flash_cnt;                                 // 5-bit modulo-30 counter driven by frame_tick (~60 Hz)
   wire flash_cnt_wrap       = (flash_cnt == 5'd18);     // Counts 0 → 18, then wraps to 0. One full cycle ~0.3 seconds.
   wire [4:0] flash_cnt_next = flash_cnt_wrap ?  5'd0 :  // restart count
-                              flash_cnt + 5'd1;         // otherwise increment
-  FDRE #(.INIT(1'b0)) _flash_cnt [4:0] (.C (frame_tick), .CE(1'b1), .R (1'b0), .D (flash_cnt_next), .Q (flash_cnt));
+         (~frame_tick ? flash_cnt : flash_cnt + 5'd1);  // otherwise increment
+  FDRE #(.INIT(1'b0)) _flash_cnt [4:0] (.C (clk), .CE(1'b1), .R (1'b0), .D (flash_cnt_next), .Q (flash_cnt));
   
   wire flash;                                           
   wire flash_next = flash_cnt_wrap ? ~flash : flash;    // Flashing bit: toggle every ~0.3 seconds.
-  FDRE #(.INIT(1'b0)) _flash (.C(frame_tick), .CE(1'b1), .R(1'b0), .D (flash_next), .Q (flash));
+  FDRE #(.INIT(1'b0)) _flash (.C(clk), .CE(1'b1), .R(1'b0), .D (flash_next), .Q (flash));
   
   wire flashing = flash & (hovering_o |                 // Page 3. The slug should change color and flash while it is hovering.
                            game_over);                  // Page 3. A crash ends the game, and when the game is over, the slug and all trains stop moving, and the slug flashes.
