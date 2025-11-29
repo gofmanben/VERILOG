@@ -321,13 +321,13 @@ module testSyncs();
           // Horizontal change
           if (hcnt !== prev_hcnt) begin
              if (hcnt != 0 && hcnt % 102 == 0)
-                $write(".");          // no newline
+                $write(".");            // dot every 102 pixels
           end
     
           // Vertical change
           if (vcnt !== prev_vcnt) begin
              if (vcnt != 0 && vcnt % 10 == 0)
-                $write(" %0d\n", vcnt);
+                $write(" %0d\n", vcnt); // no newline
           end
           
           // Detect new frame: vcnt wrapped around
