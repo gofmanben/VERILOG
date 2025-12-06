@@ -324,9 +324,9 @@ module lab6Top (
                     energy_o             ? 4'h0       :  // energy → green (B = 0)
                     slug_o               ? slug_Blue  :  // slug   → (see slug_Blue) 
                     lives_o              ? 4'h0       :  // slug → yellow  (B = 0)
-                    rails_on& trains_o   ? 4'hF       :  // rails → brown (B = 255)
+                    rails_on& trains_o   ? 4'hF       :  // rails → bluish (imitation of transparency) (B = 255)
                     rails_on             ? 4'h1       :  // rails → brown (B = 17)
-                    trains_o             ? 4'hF       :  // train  → green (B = 255)
+                    trains_o             ? 4'hF       :  // train  → blue (B = 255)
                     4'h0;                                // background → black (B = 0)
   
   // Page 3: RGB data signals (vgaRed[3:0], vgaBlue[3:0], and vgaGreen[3:0])                  
